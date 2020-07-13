@@ -1,0 +1,2 @@
+Update-database -StartUpProject WEB -verbose  //set default procet to 'Database'
+Add-migration "Migration name" -StartUpProject WEB -verbose

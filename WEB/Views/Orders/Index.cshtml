@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Database.Data.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        <a href="#">Complete by paying(coming soon)</a>
+                    </td>
+                </tr>
+                @foreach (var productCart in item.Cart.ProductCarts)
+                {
+                    <tr><td colspan="2">@productCart.Product.Name @productCart.Quantity x €@productCart.Product.Price</td></tr>
+                }
+            }
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model WEB.Models.CartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCarts.FirstOrDefault().Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCarts.FirstOrDefault().Product.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCarts.FirstOrDefault().Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductCarts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-cartId="@item.CartId" asp-route-productId="@item.ProductId">Edit</a> |
+                    <a asp-action="Delete" asp-route-cartId="@item.CartId" asp-route-productId="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h4>Total price: @Model.TotalPrice</h4>
+<div>
+    <a asp-action="FormOrder" asp-controller="Orders">Form an order</a>
+</div>

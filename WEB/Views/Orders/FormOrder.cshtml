@@ -1,0 +1,35 @@
+﻿@model Database.Data.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    <h4>Products</h4>
+    @foreach (var productCart in Model.Cart.ProductCarts)
+    {
+        <p>@productCart.Product.Name @productCart.Quantity x €@productCart.Product.Price</p>
+        <br />
+    }
+</div>
+<div>
+    <a asp-action="Create" asp-route-cartId="@Model.Cart.Id">Confirm the order</a> |
+</div>
